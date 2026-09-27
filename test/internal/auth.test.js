@@ -17,6 +17,15 @@ describe('POST /api/auth/login', () => {
     expect(resposta.body).to.have.property('token');
   });
 
+  it('deve retornar 400 quando a senha não for informada', async () => {
+    const resposta = await request(app)
+      .post('/api/auth/login')
+      .send({ email: 'admin@escola.com', senha: '' });
+
+    expect(resposta.status).to.equal(400);
+    
+    });
+
   it('deve retornar 401 quando a senha informada for inválida', async () => {
     const resposta = await request(app)
       .post('/api/auth/login')

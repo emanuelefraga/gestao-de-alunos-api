@@ -74,6 +74,7 @@ src/
     asyncHandler.js
 docs/
   openapi.yaml            # especificação Swagger/OpenAPI (fonte da documentação)
+  .env.example            # exemplo das informações de configuração do projeto
 ```
 
 ## Instalação e execução
@@ -260,3 +261,40 @@ curl -X POST http://localhost:3000/api/alunos/aluno-ana-souza/trabalhos \
 
 > Novos registros criados via API recebem ids no formato UUID (gerados com
 > `crypto.randomUUID()`), diferente dos ids legíveis usados nos dados fake acima.
+
+
+## Avaliação - Automação de Testes
+
+### Fluxo automatizado
+
+Foi implementado um teste automatizado para validar o fluxo completo de entrega de um trabalho por um aluno:
+
+1. Login como administrador;
+2. Administrador realiza o cadastro de um aluno;
+3. Administrador realiza o cadastro de uma disciplina;
+4. Administrador realiza a matrícula do aluno na disciplina;
+5. Login como aluno;
+6. Aluno registra a entrega de um trabalho;
+7. Validação da entrega.
+
+### Estrutura dos testes
+
+- `test/helpers/` — helpers de autenticação e requisições;
+- `test/factories/` — geração de dados dinâmicos para alunos e disciplinas;
+- `test/fixtures/` — dados utilizados no Data-Driven Testing;
+- `test/external/fluxoEntregaTrabalho` — testes de fluxo de entrega de um trabalho por um aluno.
+
+### Data-Driven Testing
+
+Os dados utilizados para o trabalho são mantidos em:
+
+`test/fixtures/trabalhos.json`
+
+O teste utiliza esses dados para realizar a entrega e também para validar os dados retornados pela API.
+
+### Execução dos testes
+
+Para executar o fluxo da avaliação (roda apenas o arquivo com os testes implementados para avaliação):
+
+```bash
+npm run test:prova
