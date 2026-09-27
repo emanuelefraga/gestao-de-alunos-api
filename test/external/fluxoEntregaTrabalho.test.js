@@ -7,10 +7,6 @@ import trabalhosDaDisciplina from '../fixtures/trabalhos.json' with { type: 'jso
 
 describe("Entrega de Trabalho da Disciplina por um Aluno", () => {
 
-    //Antes de rodar esse IT, tenha o email admin@escola.com e a senha admin123 cadastrados no banco.
-    //Não ter no banco de dados uma aluna com o email ana.souza.1004@example.com e a matrícula 2024094.
-    //Não ter uma disciplina com o código PC104
-
     it("Validar que um aluno entregou um trabalho da disciplina", async () => {
         
         //Cadastrar o Aluno
